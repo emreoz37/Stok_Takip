@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61158136316d45f4b8ed9f72514e963d" Name="Diagram1">
+        <EntityTypeShape EntityType="YazilimSinamaModel.Bolumler" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Demirbas_Oda" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Demirbaslar" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Fakulteler" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Kategoriler" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Kisiler" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Kullanici_Role" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Kullanicilar" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.OdaFakulteBolum" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Odalar" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Roller" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Urun_Stok" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Urunler" Width="1.5" PointX="1.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.Zimmetler" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="YazilimSinamaModel.KisiOda" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Bolumler_Fakulteler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_OdaFakulteBolum_Bolumler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Demirbas_Oda_Demirbaslar" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Demirbas_Oda_Odalar" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Demirbas_Oda_Zimmetler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Demirbaslar_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Urunler_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Kullanicilar_Kisiler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Zimmetler_Kisiler" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Kullanici_Role_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Kullanici_Role_Roller" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_OdaFakulteBolum_Odalar" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Zimmetler_Odalar" ManuallyRouted="false" />
+        <AssociationConnector Association="YazilimSinamaModel.FK_Urun_Stok_Urunler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

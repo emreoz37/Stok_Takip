@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YazilimSinamaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bolumler">
+    <Key>
+      <PropertyRef Name="BolumId" />
+    </Key>
+    <Property Name="BolumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FakulteId" Type="Int32" Nullable="false" />
+    <Property Name="BolumAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Fakulteler" Relationship="Self.FK_Bolumler_Fakulteler" FromRole="Bolumler" ToRole="Fakulteler" />
+    <NavigationProperty Name="OdaFakulteBolums" Relationship="Self.FK_OdaFakulteBolum_Bolumler" FromRole="Bolumler" ToRole="OdaFakulteBolum" />
+  </EntityType>
+  <EntityType Name="Demirbas_Oda">
+    <Key>
+      <PropertyRef Name="DemirbasOdaId" />
+    </Key>
+    <Property Name="DemirbasOdaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DemirbasId" Type="Int32" Nullable="false" />
+    <Property Name="ZimmetId" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" />
+    <NavigationProperty Name="Demirbaslar" Relationship="Self.FK_Demirbas_Oda_Demirbaslar" FromRole="Demirbas_Oda" ToRole="Demirbaslar" />
+    <NavigationProperty Name="Odalar" Relationship="Self.FK_Demirbas_Oda_Odalar" FromRole="Demirbas_Oda" ToRole="Odalar" />
+    <NavigationProperty Name="Zimmetler" Relationship="Self.FK_Demirbas_Oda_Zimmetler" FromRole="Demirbas_Oda" ToRole="Zimmetler" />
+  </EntityType>
+  <EntityType Name="Demirbaslar">
+    <Key>
+      <PropertyRef Name="DemirbasNo" />
+    </Key>
+    <Property Name="DemirbasNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="DemirbasKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DemirbasAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DemirbasAdedi" Type="Int32" />
+    <Property Name="DemirbasAciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Demirbas_Oda" Relationship="Self.FK_Demirbas_Oda_Demirbaslar" FromRole="Demirbaslar" ToRole="Demirbas_Oda" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Demirbaslar_Urunler" FromRole="Demirbaslar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Fakulteler">
+    <Key>
+      <PropertyRef Name="FakulteId" />
+    </Key>
+    <Property Name="FakulteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FakulteAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bolumlers" Relationship="Self.FK_Bolumler_Fakulteler" FromRole="Fakulteler" ToRole="Bolumler" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Kisiler">
+    <Key>
+      <PropertyRef Name="KisiId" />
+    </Key>
+    <Property Name="KisiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanicilar_Kisiler" FromRole="Kisiler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Zimmetlers" Relationship="Self.FK_Zimmetler_Kisiler" FromRole="Kisiler" ToRole="Zimmetler" />
+  </EntityType>
+  <EntityType Name="Kullanici_Role">
+    <Key>
+      <PropertyRef Name="KullaniciRoleId" />
+    </Key>
+    <Property Name="KullaniciRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanici_Role_Kullanicilar" FromRole="Kullanici_Role" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Roller" Relationship="Self.FK_Kullanici_Role_Roller" FromRole="Kullanici_Role" ToRole="Roller" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SonGirisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Silindi" Type="Boolean" />
+    <NavigationProperty Name="Kisiler" Relationship="Self.FK_Kullanicilar_Kisiler" FromRole="Kullanicilar" ToRole="Kisiler" />
+    <NavigationProperty Name="Kullanici_Role" Relationship="Self.FK_Kullanici_Role_Kullanicilar" FromRole="Kullanicilar" ToRole="Kullanici_Role" />
+  </EntityType>
+  <EntityType Name="OdaFakulteBolum">
+    <Key>
+      <PropertyRef Name="OdaFakulteBolumId" />
+    </Key>
+    <Property Name="OdaFakulteBolumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OdaId" Type="Int32" Nullable="false" />
+    <Property Name="BolumId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bolumler" Relationship="Self.FK_OdaFakulteBolum_Bolumler" FromRole="OdaFakulteBolum" ToRole="Bolumler" />
+    <NavigationProperty Name="Odalar" Relationship="Self.FK_OdaFakulteBolum_Odalar" FromRole="OdaFakulteBolum" ToRole="Odalar" />
+  </EntityType>
+  <EntityType Name="Odalar">
+    <Key>
+      <PropertyRef Name="OdaId" />
+    </Key>
+    <Property Name="OdaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OdaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Demirbas_Oda" Relationship="Self.FK_Demirbas_Oda_Odalar" FromRole="Odalar" ToRole="Demirbas_Oda" />
+    <NavigationProperty Name="OdaFakulteBolums" Relationship="Self.FK_OdaFakulteBolum_Odalar" FromRole="Odalar" ToRole="OdaFakulteBolum" />
+    <NavigationProperty Name="Zimmetlers" Relationship="Self.FK_Zimmetler_Odalar" FromRole="Odalar" ToRole="Zimmetler" />
+  </EntityType>
+  <EntityType Name="Roller">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RolAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kullanici_Role" Relationship="Self.FK_Kullanici_Role_Roller" FromRole="Roller" ToRole="Kullanici_Role" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Urun_Stok">
+    <Key>
+      <PropertyRef Name="StokId" />
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="StokId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Urun_Stok_Urunler" FromRole="Urun_Stok" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UrunBirimFiyati" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SatinAlinmaTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Silindi" Type="Boolean" />
+    <NavigationProperty Name="Demirbaslars" Relationship="Self.FK_Demirbaslar_Urunler" FromRole="Urunler" ToRole="Demirbaslar" />
+    <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Urunler" ToRole="Kategoriler" />
+    <NavigationProperty Name="Urun_Stok" Relationship="Self.FK_Urun_Stok_Urunler" FromRole="Urunler" ToRole="Urun_Stok" />
+  </EntityType>
+  <EntityType Name="Zimmetler">
+    <Key>
+      <PropertyRef Name="ZimmetId" />
+    </Key>
+    <Property Name="ZimmetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KisiId" Type="Int32" />
+    <Property Name="OdaId" Type="Int32" />
+    <NavigationProperty Name="Demirbas_Oda" Relationship="Self.FK_Demirbas_Oda_Zimmetler" FromRole="Zimmetler" ToRole="Demirbas_Oda" />
+    <NavigationProperty Name="Kisiler" Relationship="Self.FK_Zimmetler_Kisiler" FromRole="Zimmetler" ToRole="Kisiler" />
+    <NavigationProperty Name="Odalar" Relationship="Self.FK_Zimmetler_Odalar" FromRole="Zimmetler" ToRole="Odalar" />
+  </EntityType>
+  <EntityType Name="KisiOda">
+    <Key>
+      <PropertyRef Name="KisiId" />
+      <PropertyRef Name="Ad" />
+      <PropertyRef Name="Soyad" />
+      <PropertyRef Name="OdaId" />
+      <PropertyRef Name="OdaAdi" />
+    </Key>
+    <Property Name="KisiId" Type="Int32" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OdaId" Type="Int32" Nullable="false" />
+    <Property Name="OdaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bolumler_Fakulteler">
+    <End Role="Fakulteler" Type="Self.Fakulteler" Multiplicity="1" />
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fakulteler">
+        <PropertyRef Name="FakulteId" />
+      </Principal>
+      <Dependent Role="Bolumler">
+        <PropertyRef Name="FakulteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdaFakulteBolum_Bolumler">
+    <End Role="Bolumler" Type="Self.Bolumler" Multiplicity="1" />
+    <End Role="OdaFakulteBolum" Type="Self.OdaFakulteBolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bolumler">
+        <PropertyRef Name="BolumId" />
+      </Principal>
+      <Dependent Role="OdaFakulteBolum">
+        <PropertyRef Name="BolumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Demirbas_Oda_Demirbaslar">
+    <End Role="Demirbaslar" Type="Self.Demirbaslar" Multiplicity="1" />
+    <End Role="Demirbas_Oda" Type="Self.Demirbas_Oda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Demirbaslar">
+        <PropertyRef Name="DemirbasNo" />
+      </Principal>
+      <Dependent Role="Demirbas_Oda">
+        <PropertyRef Name="DemirbasId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Demirbas_Oda_Odalar">
+    <End Role="Odalar" Type="Self.Odalar" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Demirbas_Oda" Type="Self.Demirbas_Oda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odalar">
+        <PropertyRef Name="OdaId" />
+      </Principal>
+      <Dependent Role="Demirbas_Oda">
+        <PropertyRef Name="ZimmetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Demirbas_Oda_Zimmetler">
+    <End Role="Zimmetler" Type="Self.Zimmetler" Multiplicity="1" />
+    <End Role="Demirbas_Oda" Type="Self.Demirbas_Oda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zimmetler">
+        <PropertyRef Name="ZimmetId" />
+      </Principal>
+      <Dependent Role="Demirbas_Oda">
+        <PropertyRef Name="ZimmetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Demirbaslar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+    <End Role="Demirbaslar" Type="Self.Demirbaslar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Demirbaslar">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Kategoriler">
+    <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanicilar_Kisiler">
+    <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="1" />
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Kisiler">
+        <PropertyRef Name="KisiId" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zimmetler_Kisiler">
+    <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="0..1" />
+    <End Role="Zimmetler" Type="Self.Zimmetler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisiler">
+        <PropertyRef Name="KisiId" />
+      </Principal>
+      <Dependent Role="Zimmetler">
+        <PropertyRef Name="KisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanici_Role_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+    <End Role="Kullanici_Role" Type="Self.Kullanici_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="KullaniciId" />
+      </Principal>
+      <Dependent Role="Kullanici_Role">
+        <PropertyRef Name="KullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanici_Role_Roller">
+    <End Role="Roller" Type="Self.Roller" Multiplicity="1" />
+    <End Role="Kullanici_Role" Type="Self.Kullanici_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roller">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Kullanici_Role">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdaFakulteBolum_Odalar">
+    <End Role="Odalar" Type="Self.Odalar" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OdaFakulteBolum" Type="Self.OdaFakulteBolum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odalar">
+        <PropertyRef Name="OdaId" />
+      </Principal>
+      <Dependent Role="OdaFakulteBolum">
+        <PropertyRef Name="OdaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zimmetler_Odalar">
+    <End Role="Odalar" Type="Self.Odalar" Multiplicity="0..1" />
+    <End Role="Zimmetler" Type="Self.Zimmetler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odalar">
+        <PropertyRef Name="OdaId" />
+      </Principal>
+      <Dependent Role="Zimmetler">
+        <PropertyRef Name="OdaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_Stok_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+    <End Role="Urun_Stok" Type="Self.Urun_Stok" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Urun_Stok">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bolumlers" EntityType="Self.Bolumler" />
+    <EntitySet Name="Demirbas_Oda" EntityType="Self.Demirbas_Oda" />
+    <EntitySet Name="Demirbaslars" EntityType="Self.Demirbaslar" />
+    <EntitySet Name="Fakultelers" EntityType="Self.Fakulteler" />
+    <EntitySet Name="Kategorilers" EntityType="Self.Kategoriler" />
+    <EntitySet Name="Kisilers" EntityType="Self.Kisiler" />
+    <EntitySet Name="Kullanici_Role" EntityType="Self.Kullanici_Role" />
+    <EntitySet Name="Kullanicilars" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="OdaFakulteBolums" EntityType="Self.OdaFakulteBolum" />
+    <EntitySet Name="Odalars" EntityType="Self.Odalar" />
+    <EntitySet Name="Rollers" EntityType="Self.Roller" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Urun_Stok" EntityType="Self.Urun_Stok" />
+    <EntitySet Name="Urunlers" EntityType="Self.Urunler" />
+    <EntitySet Name="Zimmetlers" EntityType="Self.Zimmetler" />
+    <EntitySet Name="KisiOdas" EntityType="Self.KisiOda" />
+    <AssociationSet Name="FK_Bolumler_Fakulteler" Association="Self.FK_Bolumler_Fakulteler">
+      <End Role="Fakulteler" EntitySet="Fakultelers" />
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdaFakulteBolum_Bolumler" Association="Self.FK_OdaFakulteBolum_Bolumler">
+      <End Role="Bolumler" EntitySet="Bolumlers" />
+      <End Role="OdaFakulteBolum" EntitySet="OdaFakulteBolums" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Demirbas_Oda_Demirbaslar" Association="Self.FK_Demirbas_Oda_Demirbaslar">
+      <End Role="Demirbaslar" EntitySet="Demirbaslars" />
+      <End Role="Demirbas_Oda" EntitySet="Demirbas_Oda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Demirbas_Oda_Odalar" Association="Self.FK_Demirbas_Oda_Odalar">
+      <End Role="Odalar" EntitySet="Odalars" />
+      <End Role="Demirbas_Oda" EntitySet="Demirbas_Oda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Demirbas_Oda_Zimmetler" Association="Self.FK_Demirbas_Oda_Zimmetler">
+      <End Role="Zimmetler" EntitySet="Zimmetlers" />
+      <End Role="Demirbas_Oda" EntitySet="Demirbas_Oda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Demirbaslar_Urunler" Association="Self.FK_Demirbaslar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Demirbaslar" EntitySet="Demirbaslars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategorilers" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanicilar_Kisiler" Association="Self.FK_Kullanicilar_Kisiler">
+      <End Role="Kisiler" EntitySet="Kisilers" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zimmetler_Kisiler" Association="Self.FK_Zimmetler_Kisiler">
+      <End Role="Kisiler" EntitySet="Kisilers" />
+      <End Role="Zimmetler" EntitySet="Zimmetlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanici_Role_Kullanicilar" Association="Self.FK_Kullanici_Role_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+      <End Role="Kullanici_Role" EntitySet="Kullanici_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanici_Role_Roller" Association="Self.FK_Kullanici_Role_Roller">
+      <End Role="Roller" EntitySet="Rollers" />
+      <End Role="Kullanici_Role" EntitySet="Kullanici_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdaFakulteBolum_Odalar" Association="Self.FK_OdaFakulteBolum_Odalar">
+      <End Role="Odalar" EntitySet="Odalars" />
+      <End Role="OdaFakulteBolum" EntitySet="OdaFakulteBolums" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zimmetler_Odalar" Association="Self.FK_Zimmetler_Odalar">
+      <End Role="Odalar" EntitySet="Odalars" />
+      <End Role="Zimmetler" EntitySet="Zimmetlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_Stok_Urunler" Association="Self.FK_Urun_Stok_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Urun_Stok" EntitySet="Urun_Stok" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DemirbasDuzenle">
+      <Parameter Name="demirbasNo" Mode="In" Type="Int32" />
+      <Parameter Name="fakutleId" Mode="In" Type="Int32" />
+      <Parameter Name="bolumId" Mode="In" Type="Int32" />
+      <Parameter Name="kategoriId" Mode="In" Type="Int32" />
+      <Parameter Name="demirbasAdedi" Mode="In" Type="Int32" />
+      <Parameter Name="demirbasAciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DemirbasEkle">
+      <Parameter Name="fakutleId" Mode="In" Type="Int32" />
+      <Parameter Name="bolumId" Mode="In" Type="Int32" />
+      <Parameter Name="kategoriId" Mode="In" Type="Int32" />
+      <Parameter Name="urunId" Mode="In" Type="Int32" />
+      <Parameter Name="demirbasAdedi" Mode="In" Type="Int32" />
+      <Parameter Name="demirbasAciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(YazilimSinamaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(YazilimSinamaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OdaDemirbaslariGetir">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OdaEkle">
+      <Parameter Name="OdaAdi" Mode="In" Type="String" />
+      <Parameter Name="BolumId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OdaGuncelle">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+      <Parameter Name="OdaAdi" Mode="In" Type="String" />
+      <Parameter Name="BolumId" Mode="In" Type="Int32" />
+      <Parameter Name="KisiId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OdayaDemirbasEkle">
+      <Parameter Name="DemirbasId" Mode="In" Type="Int32" />
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+      <Parameter Name="Adet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_UrunEkle">
+      <Parameter Name="KategoriId" Mode="In" Type="Int32" />
+      <Parameter Name="UrunAdi" Mode="In" Type="String" />
+      <Parameter Name="UrunBirimFiyati" Mode="In" Type="Decimal" />
+      <Parameter Name="Stok" Mode="In" Type="Int32" />
+      <Parameter Name="SatinAlinmaTarihi" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UrunGuncelle">
+      <Parameter Name="UrunId" Mode="In" Type="Int32" />
+      <Parameter Name="KategoriId" Mode="In" Type="Int32" />
+      <Parameter Name="UrunAdi" Mode="In" Type="String" />
+      <Parameter Name="UrunBirimFiyati" Mode="In" Type="Decimal" />
+      <Parameter Name="Stok" Mode="In" Type="Int32" />
+      <Parameter Name="SatinAlinmaTarihi" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_OdaDemirbaslariGetir1" ReturnType="Collection(YazilimSinamaModel.sp_OdaDemirbaslariGetir1_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_odadakiDemirbaslar" ReturnType="Collection(YazilimSinamaModel.sp_odadakiDemirbaslar_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_odadaki_Demirbaslar" ReturnType="Collection(YazilimSinamaModel.sp_odadaki_Demirbaslar_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_odadaki_Demirbaslar1" ReturnType="Collection(YazilimSinamaModel.sp_odadaki_Demirbaslar1_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Odadaki_Demirbaslar01" ReturnType="Collection(YazilimSinamaModel.sp_Odadaki_Demirbaslar01_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Odadaki_Demirbaslar02" ReturnType="Collection(YazilimSinamaModel.sp_Odadaki_Demirbaslar02_Result)">
+      <Parameter Name="OdaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_kisi_Demirbaslar" ReturnType="Collection(YazilimSinamaModel.sp_kisi_Demirbaslar_Result)">
+      <Parameter Name="kisiId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_kisi_Demirbaslar1" ReturnType="Collection(YazilimSinamaModel.sp_kisi_Demirbaslar1_Result)">
+      <Parameter Name="kisiId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_OdaDemirbaslariGetir1_Result">
+    <Property Type="Int32" Name="KisiId" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="OdaAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="OdaId" Nullable="false" />
+    <Property Type="Int32" Name="ZimmetId" Nullable="false" />
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DemirbasAdedi" Nullable="true" />
+    <Property Type="String" Name="DemirbasAciklama" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_odadakiDemirbaslar_Result">
+    <Property Type="Int32" Name="KisiId" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="OdaAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="OdaId" Nullable="false" />
+    <Property Type="Int32" Name="ZimmetId" Nullable="false" />
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DemirbasAdedi" Nullable="true" />
+    <Property Type="String" Name="DemirbasAciklama" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_odadaki_Demirbaslar_Result">
+    <Property Type="Int32" Name="KisiId" Nullable="false" />
+    <Property Type="String" Name="OdaAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="OdaId" Nullable="false" />
+    <Property Type="Int32" Name="ZimmetId" Nullable="false" />
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DemirbasAdedi" Nullable="true" />
+    <Property Type="String" Name="DemirbasAciklama" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_odadaki_Demirbaslar1_Result">
+    <Property Type="Int32" Name="SiraNo" Nullable="true" />
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DemirbasAdedi" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Odadaki_Demirbaslar01_Result">
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DemirbasAdedi" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Odadaki_Demirbaslar02_Result">
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_kisi_Demirbaslar_Result">
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_kisi_Demirbaslar1_Result">
+    <Property Type="Int32" Name="DemirbasOdaId" Nullable="false" />
+    <Property Type="String" Name="DemirbasKodu" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DemirbasAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Adet" Nullable="true" />
+  </ComplexType>
+</Schema>

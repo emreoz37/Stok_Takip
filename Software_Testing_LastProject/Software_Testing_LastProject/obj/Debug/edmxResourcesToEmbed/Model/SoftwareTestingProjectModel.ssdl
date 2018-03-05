@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoftwareTestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="FacultyId" />
+    </Key>
+    <Property Name="FacultyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacultyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculties_Departments">
+    <Key>
+      <PropertyRef Name="FacultyDepartmentId" />
+    </Key>
+    <Property Name="FacultyId" Type="int" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="FacultyDepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fixtures">
+    <Key>
+      <PropertyRef Name="FixtureId" />
+    </Key>
+    <Property Name="FixtureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FixtureCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FixtureName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="FixtureDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="Fixtures_Products_Buy">
+    <Key>
+      <PropertyRef Name="FixturesProductsId" />
+      <PropertyRef Name="FixtureId" />
+      <PropertyRef Name="ProductBuyId" />
+    </Key>
+    <Property Name="FixturesProductsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FixtureId" Type="int" Nullable="false" />
+    <Property Name="ProductBuyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persons">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PersonSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Buy">
+    <Key>
+      <PropertyRef Name="ProductBuyId" />
+    </Key>
+    <Property Name="ProductBuyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="BuyingDate" Type="smalldatetime" />
+    <Property Name="TotalPrice" Type="money" Nullable="false" />
+    <Property Name="TotalQuantity" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Stock">
+    <Key>
+      <PropertyRef Name="StockId" />
+    </Key>
+    <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductBuyId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProductUnitPrice" Type="money" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Products_Categories">
+    <Key>
+      <PropertyRef Name="ProductCategoryId" />
+    </Key>
+    <Property Name="ProductCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room_Fixtures_Persons">
+    <Key>
+      <PropertyRef Name="RoomFixtureUserId" />
+      <PropertyRef Name="RoomFixtureId" />
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="RoomFixtureUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomFixtureId" Type="int" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomName" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms_Faculties_Departments">
+    <Key>
+      <PropertyRef Name="RoomFacultyDepartmentId" />
+    </Key>
+    <Property Name="RoomFacultyDepartmentId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="FacultyDepartmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms_Fixtures">
+    <Key>
+      <PropertyRef Name="RoomFixtureId" />
+    </Key>
+    <Property Name="RoomFixtureId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="FixtureId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms_Persons">
+    <Key>
+      <PropertyRef Name="RoomPersonId" />
+      <PropertyRef Name="RoomId" />
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="RoomPersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users_Roles">
+    <Key>
+      <PropertyRef Name="UserRolesId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserRolesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoftwareTesting.dbo.view_GetAllProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_GetAllProducts">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductUnitPrice" />
+    </Key>
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="ProductBuyId" Type="int" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProductUnitPrice" Type="money" Nullable="false" />
+    <Property Name="TotalPrice" Type="money" />
+    <Property Name="TotalQuantity" Type="smallint" />
+    <Property Name="BuyingDate" Type="smalldatetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoftwareTesting.dbo.view_GetAllStock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_GetAllStock">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="BuyingDate" Type="smalldatetime" />
+    <Property Name="Quantity" Type="smallint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoftwareTesting.dbo.view_GetFacultiesAndDepartments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_GetFacultiesAndDepartments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+      <PropertyRef Name="DepartmentName" />
+      <PropertyRef Name="FacultyId" />
+      <PropertyRef Name="FacultyName" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FacultyId" Type="int" Nullable="false" />
+    <Property Name="FacultyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SoftwareTesting.dbo.view_GetRooms' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_GetRooms">
+    <Key>
+      <PropertyRef Name="RoomId" />
+      <PropertyRef Name="RoomName" />
+    </Key>
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="RoomName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PersonInfo" Type="nvarchar" MaxLength="101" />
+  </EntityType>
+  <Association Name="FK_Faculty_Department_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Faculties_Departments" Type="Self.Faculties_Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Faculties_Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculty_Department_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="1" />
+    <End Role="Faculties_Departments" Type="Self.Faculties_Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Faculties_Departments">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fixtures_Products_Fixtures">
+    <End Role="Fixtures" Type="Self.Fixtures" Multiplicity="1" />
+    <End Role="Fixtures_Products_Buy" Type="Self.Fixtures_Products_Buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fixtures">
+        <PropertyRef Name="FixtureId" />
+      </Principal>
+      <Dependent Role="Fixtures_Products_Buy">
+        <PropertyRef Name="FixtureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fixtures_Products_Product_Buy">
+    <End Role="Product_Buy" Type="Self.Product_Buy" Multiplicity="1" />
+    <End Role="Fixtures_Products_Buy" Type="Self.Fixtures_Products_Buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Buy">
+        <PropertyRef Name="ProductBuyId" />
+      </Principal>
+      <Dependent Role="Fixtures_Products_Buy">
+        <PropertyRef Name="ProductBuyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Buy_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Product_Buy" Type="Self.Product_Buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Product_Buy">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Stocks_Product_Buy">
+    <End Role="Product_Buy" Type="Self.Product_Buy" Multiplicity="1" />
+    <End Role="Product_Stock" Type="Self.Product_Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Buy">
+        <PropertyRef Name="ProductBuyId" />
+      </Principal>
+      <Dependent Role="Product_Stock">
+        <PropertyRef Name="ProductBuyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+    <End Role="Products_Categories" Type="Self.Products_Categories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Products_Categories">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Products_Categories" Type="Self.Products_Categories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Products_Categories">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Fixtures_Persons_Persons">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Room_Fixtures_Persons" Type="Self.Room_Fixtures_Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Room_Fixtures_Persons">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Fixtures_Users_Rooms_Fixtures">
+    <End Role="Rooms_Fixtures" Type="Self.Rooms_Fixtures" Multiplicity="1" />
+    <End Role="Room_Fixtures_Persons" Type="Self.Room_Fixtures_Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms_Fixtures">
+        <PropertyRef Name="RoomFixtureId" />
+      </Principal>
+      <Dependent Role="Room_Fixtures_Persons">
+        <PropertyRef Name="RoomFixtureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Faculties_Departments_Faculties_Departments">
+    <End Role="Faculties_Departments" Type="Self.Faculties_Departments" Multiplicity="1" />
+    <End Role="Rooms_Faculties_Departments" Type="Self.Rooms_Faculties_Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties_Departments">
+        <PropertyRef Name="FacultyDepartmentId" />
+      </Principal>
+      <Dependent Role="Rooms_Faculties_Departments">
+        <PropertyRef Name="FacultyDepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Faculties_Departments_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+    <End Role="Rooms_Faculties_Departments" Type="Self.Rooms_Faculties_Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Rooms_Faculties_Departments">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Fixtures_Fixtures">
+    <End Role="Fixtures" Type="Self.Fixtures" Multiplicity="1" />
+    <End Role="Rooms_Fixtures" Type="Self.Rooms_Fixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fixtures">
+        <PropertyRef Name="FixtureId" />
+      </Principal>
+      <Dependent Role="Rooms_Fixtures">
+        <PropertyRef Name="FixtureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Fixtures_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+    <End Role="Rooms_Fixtures" Type="Self.Rooms_Fixtures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Rooms_Fixtures">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Persons_Persons">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Rooms_Persons" Type="Self.Rooms_Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Rooms_Persons">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Users_Rooms">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+    <End Role="Rooms_Persons" Type="Self.Rooms_Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Rooms_Persons">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Roles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Users_Roles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Roles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Users_Roles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Persons">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fnc_CreateFixtureCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+    <Parameter Name="facultyId" Type="int" Mode="In" />
+    <Parameter Name="departmentId" Type="int" Mode="In" />
+    <Parameter Name="CategoryId" Type="int" Mode="In" />
+    <Parameter Name="fixtureId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="procedure_AddFixturesProductsBuy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="facultyId" Type="int" Mode="In" />
+    <Parameter Name="departmentId" Type="int" Mode="In" />
+    <Parameter Name="categoryId" Type="int" Mode="In" />
+    <Parameter Name="productBuyId" Type="int" Mode="In" />
+    <Parameter Name="quantity" Type="smallint" Mode="In" />
+    <Parameter Name="description" Type="text" Mode="In" />
+  </Function>
+  <Function Name="procedure_AddProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="productname" Type="nvarchar" Mode="In" />
+    <Parameter Name="productUnitPrice" Type="money" Mode="In" />
+    <Parameter Name="categoryId" Type="int" Mode="In" />
+    <Parameter Name="buyingDate" Type="smalldatetime" Mode="In" />
+    <Parameter Name="totalQuantity" Type="int" Mode="In" />
+  </Function>
+  <Function Name="procedure_AddRoomPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoomId" Type="int" Mode="In" />
+    <Parameter Name="PersonId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="procedure_AddRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoomName" Type="varchar" Mode="In" />
+    <Parameter Name="FacultyId" Type="int" Mode="In" />
+    <Parameter Name="DepartmentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="procedure_RoomFixtures" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoomId" Type="int" Mode="In" />
+    <Parameter Name="FixtureId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="procedure_RoomFixturesPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoomFixtureId" Type="int" Mode="In" />
+    <Parameter Name="PersonId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="SoftwareTestingModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculties_Departments" EntityType="Self.Faculties_Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fixtures" EntityType="Self.Fixtures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fixtures_Products_Buy" EntityType="Self.Fixtures_Products_Buy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Buy" EntityType="Self.Product_Buy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Stock" EntityType="Self.Product_Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_Categories" EntityType="Self.Products_Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room_Fixtures_Persons" EntityType="Self.Room_Fixtures_Persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms_Faculties_Departments" EntityType="Self.Rooms_Faculties_Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms_Fixtures" EntityType="Self.Rooms_Fixtures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms_Persons" EntityType="Self.Rooms_Persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="view_GetAllProducts" EntityType="Self.view_GetAllProducts" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_GetAllProducts].[ProductId] AS [ProductId], 
+    [view_GetAllProducts].[ProductBuyId] AS [ProductBuyId], 
+    [view_GetAllProducts].[ProductName] AS [ProductName], 
+    [view_GetAllProducts].[ProductUnitPrice] AS [ProductUnitPrice], 
+    [view_GetAllProducts].[TotalPrice] AS [TotalPrice], 
+    [view_GetAllProducts].[TotalQuantity] AS [TotalQuantity], 
+    [view_GetAllProducts].[BuyingDate] AS [BuyingDate]
+    FROM [dbo].[view_GetAllProducts] AS [view_GetAllProducts]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_GetAllStock" EntityType="Self.view_GetAllStock" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_GetAllStock].[ProductId] AS [ProductId], 
+    [view_GetAllStock].[ProductName] AS [ProductName], 
+    [view_GetAllStock].[BuyingDate] AS [BuyingDate], 
+    [view_GetAllStock].[Quantity] AS [Quantity]
+    FROM [dbo].[view_GetAllStock] AS [view_GetAllStock]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_GetFacultiesAndDepartments" EntityType="Self.view_GetFacultiesAndDepartments" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_GetFacultiesAndDepartments].[DepartmentId] AS [DepartmentId], 
+    [view_GetFacultiesAndDepartments].[DepartmentName] AS [DepartmentName], 
+    [view_GetFacultiesAndDepartments].[FacultyId] AS [FacultyId], 
+    [view_GetFacultiesAndDepartments].[FacultyName] AS [FacultyName]
+    FROM [dbo].[view_GetFacultiesAndDepartments] AS [view_GetFacultiesAndDepartments]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_GetRooms" EntityType="Self.view_GetRooms" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_GetRooms].[RoomId] AS [RoomId], 
+    [view_GetRooms].[RoomName] AS [RoomName], 
+    [view_GetRooms].[PersonInfo] AS [PersonInfo]
+    FROM [dbo].[view_GetRooms] AS [view_GetRooms]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Faculty_Department_Departments" Association="Self.FK_Faculty_Department_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Faculties_Departments" EntitySet="Faculties_Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculty_Department_Faculties" Association="Self.FK_Faculty_Department_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Faculties_Departments" EntitySet="Faculties_Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fixtures_Products_Fixtures" Association="Self.FK_Fixtures_Products_Fixtures">
+      <End Role="Fixtures" EntitySet="Fixtures" />
+      <End Role="Fixtures_Products_Buy" EntitySet="Fixtures_Products_Buy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fixtures_Products_Product_Buy" Association="Self.FK_Fixtures_Products_Product_Buy">
+      <End Role="Product_Buy" EntitySet="Product_Buy" />
+      <End Role="Fixtures_Products_Buy" EntitySet="Fixtures_Products_Buy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Buy_Products" Association="Self.FK_Product_Buy_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Product_Buy" EntitySet="Product_Buy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Stocks_Product_Buy" Association="Self.FK_Product_Stocks_Product_Buy">
+      <End Role="Product_Buy" EntitySet="Product_Buy" />
+      <End Role="Product_Stock" EntitySet="Product_Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories_Categories" Association="Self.FK_Products_Categories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products_Categories" EntitySet="Products_Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories_Products" Association="Self.FK_Products_Categories_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Products_Categories" EntitySet="Products_Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Fixtures_Persons_Persons" Association="Self.FK_Room_Fixtures_Persons_Persons">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Room_Fixtures_Persons" EntitySet="Room_Fixtures_Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Fixtures_Users_Rooms_Fixtures" Association="Self.FK_Room_Fixtures_Users_Rooms_Fixtures">
+      <End Role="Rooms_Fixtures" EntitySet="Rooms_Fixtures" />
+      <End Role="Room_Fixtures_Persons" EntitySet="Room_Fixtures_Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Faculties_Departments_Faculties_Departments" Association="Self.FK_Rooms_Faculties_Departments_Faculties_Departments">
+      <End Role="Faculties_Departments" EntitySet="Faculties_Departments" />
+      <End Role="Rooms_Faculties_Departments" EntitySet="Rooms_Faculties_Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Faculties_Departments_Rooms" Association="Self.FK_Rooms_Faculties_Departments_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Rooms_Faculties_Departments" EntitySet="Rooms_Faculties_Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Fixtures_Fixtures" Association="Self.FK_Rooms_Fixtures_Fixtures">
+      <End Role="Fixtures" EntitySet="Fixtures" />
+      <End Role="Rooms_Fixtures" EntitySet="Rooms_Fixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Fixtures_Rooms" Association="Self.FK_Rooms_Fixtures_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Rooms_Fixtures" EntitySet="Rooms_Fixtures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Persons_Persons" Association="Self.FK_Rooms_Persons_Persons">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Rooms_Persons" EntitySet="Rooms_Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Users_Rooms" Association="Self.FK_Rooms_Users_Rooms">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Rooms_Persons" EntitySet="Rooms_Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roles_Roles" Association="Self.FK_User_Roles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users_Roles" EntitySet="Users_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roles_Users" Association="Self.FK_User_Roles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_Roles" EntitySet="Users_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Persons" Association="Self.FK_Users_Persons">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

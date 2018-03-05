@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoftwareTestingModelStoreContainer" CdmEntityContainer="DatabaseContext">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties_Departments">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Faculties_Departments">
+        <MappingFragment StoreEntitySet="Faculties_Departments">
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="FacultyDepartmentId" ColumnName="FacultyDepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fixtures">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Fixture">
+        <MappingFragment StoreEntitySet="Fixtures">
+          <ScalarProperty Name="FixtureId" ColumnName="FixtureId" />
+          <ScalarProperty Name="FixtureCode" ColumnName="FixtureCode" />
+          <ScalarProperty Name="FixtureName" ColumnName="FixtureName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="FixtureDescription" ColumnName="FixtureDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fixtures_Products_Buy">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Fixtures_Products_Buy">
+        <MappingFragment StoreEntitySet="Fixtures_Products_Buy">
+          <ScalarProperty Name="FixturesProductsId" ColumnName="FixturesProductsId" />
+          <ScalarProperty Name="FixtureId" ColumnName="FixtureId" />
+          <ScalarProperty Name="ProductBuyId" ColumnName="ProductBuyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Person">
+        <MappingFragment StoreEntitySet="Persons">
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+          <ScalarProperty Name="PersonSurname" ColumnName="PersonSurname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Buy">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Product_Buy">
+        <MappingFragment StoreEntitySet="Product_Buy">
+          <ScalarProperty Name="ProductBuyId" ColumnName="ProductBuyId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="BuyingDate" ColumnName="BuyingDate" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Stock">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Product_Stock">
+        <MappingFragment StoreEntitySet="Product_Stock">
+          <ScalarProperty Name="StockId" ColumnName="StockId" />
+          <ScalarProperty Name="ProductBuyId" ColumnName="ProductBuyId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductUnitPrice" ColumnName="ProductUnitPrice" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products_Categories">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Products_Categories">
+        <MappingFragment StoreEntitySet="Products_Categories">
+          <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Room_Fixtures_Persons">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Room_Fixtures_Persons">
+        <MappingFragment StoreEntitySet="Room_Fixtures_Persons">
+          <ScalarProperty Name="RoomFixtureUserId" ColumnName="RoomFixtureUserId" />
+          <ScalarProperty Name="RoomFixtureId" ColumnName="RoomFixtureId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Room">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms_Faculties_Departments">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Rooms_Faculties_Departments">
+        <MappingFragment StoreEntitySet="Rooms_Faculties_Departments">
+          <ScalarProperty Name="RoomFacultyDepartmentId" ColumnName="RoomFacultyDepartmentId" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="FacultyDepartmentId" ColumnName="FacultyDepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms_Fixtures">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Rooms_Fixtures">
+        <MappingFragment StoreEntitySet="Rooms_Fixtures">
+          <ScalarProperty Name="RoomFixtureId" ColumnName="RoomFixtureId" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="FixtureId" ColumnName="FixtureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms_Persons">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Rooms_Persons">
+        <MappingFragment StoreEntitySet="Rooms_Persons">
+          <ScalarProperty Name="RoomPersonId" ColumnName="RoomPersonId" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Roles">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.Users_Roles">
+        <MappingFragment StoreEntitySet="Users_Roles">
+          <ScalarProperty Name="UserRolesId" ColumnName="UserRolesId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_GetAllProducts">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.view_GetAllProducts">
+        <MappingFragment StoreEntitySet="view_GetAllProducts">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductBuyId" ColumnName="ProductBuyId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductUnitPrice" ColumnName="ProductUnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="BuyingDate" ColumnName="BuyingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_GetAllStock">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.view_GetAllStock">
+        <MappingFragment StoreEntitySet="view_GetAllStock">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="BuyingDate" ColumnName="BuyingDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_GetFacultiesAndDepartments">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.view_GetFacultiesAndDepartments">
+        <MappingFragment StoreEntitySet="view_GetFacultiesAndDepartments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_GetRooms">
+      <EntityTypeMapping TypeName="SoftwareTestingModel.view_GetRooms">
+        <MappingFragment StoreEntitySet="view_GetRooms">
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+          <ScalarProperty Name="PersonInfo" ColumnName="PersonInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="procedure_AddFixturesProductsBuy" FunctionName="SoftwareTestingModel.Store.procedure_AddFixturesProductsBuy" />
+    <FunctionImportMapping FunctionImportName="procedure_AddProduct" FunctionName="SoftwareTestingModel.Store.procedure_AddProduct" />
+    <FunctionImportMapping FunctionImportName="procedure_AddRoomPerson" FunctionName="SoftwareTestingModel.Store.procedure_AddRoomPerson" />
+    <FunctionImportMapping FunctionImportName="procedure_AddRooms" FunctionName="SoftwareTestingModel.Store.procedure_AddRooms" />
+    <FunctionImportMapping FunctionImportName="procedure_RoomFixtures" FunctionName="SoftwareTestingModel.Store.procedure_RoomFixtures" />
+    <FunctionImportMapping FunctionImportName="procedure_RoomFixturesPerson" FunctionName="SoftwareTestingModel.Store.procedure_RoomFixturesPerson" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SoftwareTestingModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SoftwareTestingModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SoftwareTestingModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SoftwareTestingModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoftwareTestingModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SoftwareTestingModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SoftwareTestingModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SoftwareTestingModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SoftwareTestingModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
